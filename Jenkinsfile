@@ -1,6 +1,10 @@
 pipeline{
     agent any
     
+    tools{
+        maven 'Maven 3.9.11'
+    }
+    
     stages{
         stage('Parallel Stage')
         {
@@ -12,6 +16,7 @@ pipeline{
                     steps
                     {
                         echo 'Learning to build from SCM'
+                        sh 'mvn -v'
                
                     }
             
