@@ -35,6 +35,9 @@ pipeline{
         
        
         stage('Deploy'){
+            when{
+                branch 'main'
+             }
             steps{
                 echo 'Learning to DEPLOY from MULTI STAGE PIPELINE'
               
