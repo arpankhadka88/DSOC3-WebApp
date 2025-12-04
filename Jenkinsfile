@@ -1,29 +1,38 @@
 pipeline{
     agent any
-    environment{
-        ENV_VAR1= 'env var-1 Value '
-        ENV_VAR2= 'env var-2 Value '
-        ENV_VAR3= 'env var-3 Value '
-    }
+    
     stages{
-        stage('Build'){
-            steps{
-                echo 'Learning to build from SCM'
-                echo "Value of ENV_VAR1 is: ${ENV_VAR1}"
-            }
+        stage('Parallel Stage')
+        {
+            parallel
+            {
+                
+                stage('Build')
+                {
+                    steps
+                    {
+                        echo 'Learning to build from SCM'
+               
+                    }
             
-        }
-        stage('Test'){
-            steps{
-                echo 'Learning to test in a multistAge pipeline'
-                echo "Value of ENV_VAR2 is: ${ENV_VAR2}"
-            }
+                } 
+                stage('Test')
+                {
+                    steps
+                    {
+                        echo 'Learning to test in a multistAge pipeline'
+                
+                    }
             
+                }
+            } 
         }
+        
+       
         stage('Deploy'){
             steps{
                 echo 'Learning to DEPLOY from MULTI STAGE PIPELINE'
-                echo "Value of ENV_VAR3 is: ${ENV_VAR3}"
+              
             }
             
         }
