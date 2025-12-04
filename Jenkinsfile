@@ -26,6 +26,7 @@ pipeline{
                     steps
                     {
                         echo 'Learning to test in a multistAge pipeline'
+                        echo "GIT_BRANCH: ${GIT_BRANCH}"
                 
                     }
             
@@ -36,7 +37,9 @@ pipeline{
        
         stage('Deploy'){
             when{
-                branch 'main'
+                expression {
+                    return env.GIT_BRANCH == 'origin/test2'
+                }
              }
             steps{
                 echo 'Learning to DEPLOY from MULTI STAGE PIPELINE'
